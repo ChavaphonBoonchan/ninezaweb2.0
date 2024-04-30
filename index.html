@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nineza 2.0</title>
+  <link rel="icon" type="images" href="images/ninezav3.png" />
+  <style>
+    /* Define the body style for the light theme */
+    body {
+      background-color: #bcfff02a; /* light gray */
+      color: #333; /* dark gray */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Define the body style for the dark theme */
+    body.dark {
+      background-color: #333; /* dark gray */
+      color: #f0f0f0; /* light gray */
+    }
+
+    .content {
+  width: 80%;
+  max-width: 800px;
+  text-align: center;
+}
+
+    /* Style the big head text */
+    h1 {
+      font-size: 3em;
+      text-align: center;
+      margin-top: 0;
+    }
+    h2 {
+        font-size: 2em;
+        text-align: center;
+        margin-top: 0;
+    }
+
+    /* Style the popup button */
+    .popup-button {
+      display: inline-block;
+      background-color: #4CAF50; /* green */
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 16px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    /* The Modal (background) */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      padding-top: 100px; /* Location of the box */
+      
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    .popup-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #a09e9e;
+  width: 80%;
+  max-width: 800px;
+  border-radius: 10px; /* add this line to make the edges rounded */
+  position: relative;
+  animation: slideIn 0.5s;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+    /* Modal Content */
+    .modal-content {
+      background-color: #fefefe;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* The Close Button */
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    /* Style the footer text */
+    footer {
+      background-color: #807f7f62; /* light gray */
+      
+      
+      position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  
+  color: white;
+  padding: 10px;
+  text-align: center;
+    }
+
+    /* Style the theme switch button */
+    .theme-switch {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background-color: #128eb77e; /* green */
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  display: none;
+}
+    .button-container {
+        display: flex;
+        justify-content: center;
+    } 
+
+     .button-item {
+        margin: 0 5px;
+    }
+    .Btntheme {
+  background-color: #4c6bafbc;
+  border: none;
+  color: white;
+  
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  
+  margin: 4px 2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  padding: 20px 40px;
+    font-size: 18px;
+    border-radius: 10px;
+
+}
+
+.Btntheme:hover {
+  background-color: #21c6dbd5;
+}
+
+.Btntheme:active {
+  animation: button-press 0.1s forwards;
+}
+
+@keyframes button-press {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.popup {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.5s;
+}
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+popup-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #a09e9e;
+  width: 80%;
+  max-width: 800px;
+  border-radius: 5px;
+  position: relative;
+  animation: slideIn 0.5s;
+}
+
+/* Add animation (slide in the popup) */
+@keyframes slideIn {
+  from {transform: translateY(-50%); opacity: 0;}
+  to {transform: translateY(0); opacity: 1;}
+}
+
+/* Style the close button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+/* Add animation (blur the non-popup parts) */
+
+    </style>
+</head>
+<body>
+
+  <h1>Hello World! ; I am Nineza.</h1>
+  <h2>TRAIN | GAME | CODE</h2>
+
+
+  <div class="button-container">
+    <button class="popup-button , Btntheme" id="myBtn1">Donate</button>
+    
+    <a href="https://github.com/ChavaphonBoonchan" class="Btntheme" id="myBtn2">gitHub</a>
+    <a href="https://linktr.ee/chavaphon_lnwza" class="Btntheme" id="myBtn3">Linktree</a>
+    <a href="https://ngl.link/superninelol" class="Btntheme" id="myBtn4">Ngl</a>
+    </div>
+    </div>
+    
+  </div>
+
+  <!-- The Modal 1 -->
+  <div id="myModal1" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <img src="images/57.png" alt="Image 1" style="width: 45 px ; height: 70 px;">
+    </div>
+
+  </div>
+
+  <!-- The Modal 2 -->
+  
+  
+
+  <!-- The footer text -->
+  <footer>Made by Nineza</footer>
+
+  <!-- The theme switch button -->
+  <button class="theme-switch , Btntheme" id="themeSwitch">Switch to Dark Theme</button>
+
+  <!-- JavaScript to open and close the modals and switch the theme -->
+  <script>
+    // Get the modals
+    var modal1 = document.getElementById("myModal1");
+   
+
+    // Get the buttons that open themodals
+    var btn1 = document.getElementById("myBtn1");
+    
+
+    // Get the <span> elements that close the modals
+    var span1 = document.getElementsByClassName("close")[0];
+    var span2 = document.getElementsByClassName("close")[1];
+
+    // Get the theme switch button
+    var themeSwitch = document.getElementById("themeSwitch");
+
+    // When the user clicks on the buttons, open the modals
+    btn1.onclick = function() {
+      modal1.style.display = "block";
+    }
+   
+
+    // When the user clicks on <span> (x), close the modals
+    span1.onclick = function() {
+      modal1.style.display = "none";
+    }
+  
+
+    // When the user clicks anywhere outside of the modals, close them
+    window.onclick = function(event) {
+      if (event.target == modal1) {
+        modal1.style.display = "none";
+      }
+    }
+
+    // When the user clicks on the theme switch button, switch the theme
+    themeSwitch.onclick = function() {
+      // Toggle the dark class on the body element
+      document.body.classList.toggle("dark");
+
+      // Update the text of the theme switch button
+      if (document.body.classList.contains("dark")) {
+        themeSwitch.textContent = "Switch to Light Theme";
+      } else {
+        themeSwitch.textContent = "Switch to Dark Theme";
+      }
+    }
+
+
+  </script>
+
+</body>
+</html>
